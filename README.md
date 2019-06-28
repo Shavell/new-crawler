@@ -3,6 +3,8 @@
 
 ![Screenshot](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/tracking.gif)
 
+> Sqlite3-cli result for related query 
+![SQLOUTPUT](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/sqlite-cli.PNG)
 
 ## Example of SQL Queries
 
