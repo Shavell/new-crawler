@@ -3,9 +3,6 @@
 
 ![Screenshot](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/tracking.gif)
 
-> Sqlite3-cli result for related query 
-![SQLOUTPUT](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/sqlite-cli.PNG)
-
 ## Example of SQL Queries
 
 > Return all result with definition and tracking code!
@@ -13,6 +10,10 @@
 ```` 
 select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition, r.delivery_comment from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id
 ````
+> Sqlite3-cli result for related query 
+![SQLOUTPUT](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/sqlite-cli.PNG)
+
+
 ## How to use
 
  - Open db/models.py and edit example section for own requirements.
