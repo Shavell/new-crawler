@@ -13,6 +13,12 @@
 ```` 
 select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id
 ````
+## How to use
+
+ - Open db/models.py and edit example section for own requirements.
+ - Run db/models.py for creation tables to sqlite.db
+ - if ur mllib models is ready for actions, u can start application with main.py
+
 
 ## Requirements
 - Python 3.6 or earlier
