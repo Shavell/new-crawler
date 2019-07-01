@@ -1,5 +1,5 @@
 # GonderiTakibi
-> tracking and logging your shipments for international PTT shipments 
+> tracking and logging your shipments for international PTT posts.
 
 ![Screenshot](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/tracking.gif)
 
@@ -10,6 +10,12 @@
 ```` 
 select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition, r.delivery_comment from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id
 ````
+
+>If u need only having fee packages u can execute this query
+````
+select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition, r.delivery_comment from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id where r.total_fees is not null
+````
+
 > Sqlite3-cli result for related query 
 ![SQLOUTPUT](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/sqlite-cli.PNG)
 
