@@ -44,7 +44,7 @@ class Main(unittest.TestCase):
                     fill_test_action_to_db(err, barcode, extracted_captcha_key, start, error, self.test_id)
                     default_scenario(self, barcode)
                 except ScreenWaitException:
-                    time.sleep(5)
+                    time.sleep(Constants.wait_for_sec)
                     logger.info("Screen is waiting! 5 sec. after call refresh ")
                     self.driver.refresh()
                 except BarcodeErrorException as error:

@@ -3,7 +3,7 @@
 
 ![Screenshot](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/tracking.gif)
 
-## Example of SQL Queries
+## Example of Essential SQL Queries
 
 > Return all result with definition and tracking code!
 
@@ -22,6 +22,7 @@ select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total
 
 ## How to use
 
+ - Firstly pip install -r requirements.txt
  - Open db/models.py and edit example section for own requirements.
  - Run db/models.py for creation tables to sqlite.db
  - if ur mllib models is ready for actions, u can start application with main.py
