@@ -4,7 +4,10 @@ from datetime import datetime
 
 import pandas as pd
 from beautifultable import BeautifulTable
+from selenium.common.exceptions import ElementNotVisibleException, NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from constants import Constants
 from db import models
@@ -61,9 +64,12 @@ def fill_test_action_to_db(err, barcode, key, start, err_desc, transaction_id):
 
 
 def fill_test_result_to_db(self, log_action_id):
-    last_process_comment = self.driver.find_element(By.XPATH, Constants.last_process_comment_xpath)
-    last_process_date = self.driver.find_element(By.XPATH, Constants.last_process_date_xpath)
-    delivery_comment = self.driver.find_element(By.XPATH, Constants.delivery_comment_xpath)
+    wait = WebDriverWait(self.driver, 10, poll_frequency=1,
+                         ignored_exceptions=[ElementNotVisibleException, NoSuchElementException])
+
+    last_process_comment = wait.until(EC.element_to_be_clickable((By.XPATH, Constants.last_process_comment_xpath)))
+    last_process_date = wait.until(EC.element_to_be_clickable((By.XPATH, Constants.last_process_date_xpath)))
+    delivery_comment = wait.until(EC.element_to_be_clickable((By.XPATH, Constants.delivery_comment_xpath)))
 
     self.actions = None
     self.fee = None
