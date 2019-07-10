@@ -8,12 +8,44 @@
 > Return all result with definition and tracking code!
 
 ```` 
-select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition, r.delivery_comment from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id
+select la.tracking_code_id,
+       r.last_process_comment,
+       r.last_process_date,
+       r.total_fees,
+       tc.definition,
+       r.delivery_comment
+from main.log_result r
+         join log_action la on r.log_action_id = la.id
+         left join tracking_code tc on la.tracking_code_id = tc.tracking_id
 ````
 
 >If u need only having fee packages u can execute this query
 ````
-select la.tracking_code_id, r.last_process_comment, r.last_process_date, r.total_fees, tc.definition, r.delivery_comment from main.log_result r join log_action la on r.log_action_id = la.id left join tracking_code tc on la.tracking_code_id = tc.tracking_id where r.total_fees is not null
+select la.tracking_code_id,
+       r.last_process_comment,
+       r.last_process_date,
+       r.total_fees,
+       tc.definition,
+       r.delivery_comment
+from main.log_result r
+         join log_action la on r.log_action_id = la.id
+         left join tracking_code tc on la.tracking_code_id = tc.tracking_id
+where r.total_fees is not null
+````
+
+>If u need last result of tracking
+````
+select la.tracking_code_id,
+       r.last_process_comment,
+       r.last_process_date,
+       r.total_fees,
+       tc.definition,
+       r.delivery_comment
+from main.log_result r
+         join log_action la on r.log_action_id = la.id
+         left join tracking_code tc on la.tracking_code_id = tc.tracking_id
+where la.log_test_transaction_id = (select id from log_test_transaction order by id desc limit 1)
+order by r.last_process_date asc
 ````
 
 > Sqlite3-cli result for related query 
