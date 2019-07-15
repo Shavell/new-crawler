@@ -60,8 +60,6 @@ class Main(unittest.TestCase):
                 action_id = fill_test_action_to_db(err, barcode, extracted_captcha_key, start, "", self.test_id)
                 fill_test_result_to_db(self, action_id)
 
-        assert err is not True
-
 
 if __name__ == "__main__":
     unittest.main()
