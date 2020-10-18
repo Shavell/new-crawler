@@ -47,3 +47,5 @@ def crawl_store(self, store_id):
                  followers=get_text_from_xpath(self, Constants.store_followers_path),
                  rating=get_text_from_xpath(self, Constants.store_rating_path),
                  about=get_text_from_xpath(self, Constants.store_about_path))
+    from db.models import StoreId
+    StoreId.update(done=1).where(StoreId.id == store_id).execute()

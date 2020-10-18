@@ -1,4 +1,5 @@
 import shutil
+import time
 import unittest
 
 from selenium import webdriver
@@ -27,7 +28,10 @@ class Main(unittest.TestCase):
 
     def test_doit(self):
         driver = self.driver
-        store_ids = models.StoreId.select().where(models.StoreId.done == False)
+        from db.models import StoreId
+        store_ids = StoreId.select().where(models.StoreId.done == False)
+        if StoreId.select().where(StoreId.done == False).count() == 0:
+            print('There is no one undone test!')
         for store_id in store_ids:
             with self.subTest(comment=store_id.comment):
                 driver.get(store_id.storeUrl)
