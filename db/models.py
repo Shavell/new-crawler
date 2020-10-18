@@ -6,78 +6,66 @@ from peewee import *
 db = SqliteDatabase(os.path.join(os.path.dirname(__file__), '../sqlite.db'))
 
 
-class TrackingCode(Model):
+class StoreId(Model):
     id = PrimaryKeyField()
-    tracking_id = CharField(unique=True)
-    definition = CharField()
+    storeUrl = CharField(unique=True)
+    comment = CharField()
     created = DateTimeField(default=datetime.now)
-    active = BooleanField(default=True)
+    done = BooleanField(default=False)
 
     class Meta:
         database = db
-        table_name = 'tracking_code'
+        table_name = 'store_id'
 
-
-class LogTestTransaction(Model):
+class Store(Model):
     id = PrimaryKeyField()
-    start = DateTimeField(default=datetime.now())
-    end = DateTimeField(null=True)
+    storeId = ForeignKeyField(StoreId, backref='stores', field='id', index=True)
+    storeName = CharField(null=True)
+    products = IntegerField(null=True)
+    following = CharField(null=True)
+    chatPerformance = CharField(null=True)
+    cancellationRate = CharField(null=True)
+    joined = CharField(null=True)
+    followers = CharField(null=True)
+    rating = CharField(null=True)
+    about = CharField(null=True, max_length=2500)
 
     class Meta:
         database = db
-        table_name = 'log_test_transaction'
+        table_name = 'store'
 
-
-class LogAction(Model):
+class StoreItem(Model):
     id = PrimaryKeyField()
-    tracking_code = ForeignKeyField(TrackingCode, backref='logaction', field='tracking_id')
-    captcha_key = CharField()
-    start = DateTimeField()
-    end = DateTimeField(default=datetime.now())
-    err = BooleanField(default=True)
-    err_desc = CharField(null=True, default="")
-    log_test_transaction = ForeignKeyField(LogTestTransaction, backref='logtesttransaction', field='id')
+    store = ForeignKeyField(Store, backref='id', field='id', index=True)
+    productName = CharField(null=True)
+    productPrice = CharField(null=True)
+    productUrl = CharField(null=True)
+    productSold = CharField(null=True)
 
     class Meta:
         database = db
-        table_name = 'log_action'
+        table_name = 'store_item'
 
 
-class LogResult(Model):
-    id = PrimaryKeyField()
-    last_process_comment = CharField(null=True)
-    last_process_date = DateField(formats=['%d/%m/%Y'], null=True)
-    delivery_comment = CharField(null=True)
-    total_fees = CharField(null=True)
-    all_actions_result = BlobField(null=True)
-    all_fees = BlobField(null=True)
-    log_action = ForeignKeyField(LogAction, backref='logresult', field='id')
+class StoreItemDetail(Model):
+    pass
 
-    class Meta:
-        database = db
-        table_name = 'log_result'
 
 
 def generate_migrate():
     example = [
         {
-            'definition': 'silikon, sabitleyici',
-            'tracking_id': 'RV940360077CN'
-        },
-        {
-            'definition': 'vidalama',
-            'tracking_id': 'RP614332548CN'
-        },
-        {
-            'definition': 'silikon, vidalama',
-            'tracking_id': 'LL440197678CN'
+            'comment': 'JYC Electronics Store',
+            'storeUrl': 'https://shopee.ph/shop/165702374',
         }
     ]
     for i in example:
-        TrackingCode.create(definition=i['definition'], tracking_id=i['tracking_id'])
+        StoreId.create(comment=i['comment'], storeUrl=i['storeUrl'])
 
 
 if __name__ == "__main__":
-    if db.table_exists(TrackingCode) is not True:
-        db.create_tables([TrackingCode, LogAction, LogResult, LogTestTransaction])
+    if db.table_exists(StoreId) is not True:
+        db.create_tables([StoreId, Store, StoreItem])
         generate_migrate()
+    else:
+        db.drop_tables([StoreId, Store, StoreItem])

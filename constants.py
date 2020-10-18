@@ -1,28 +1,35 @@
 
 class Constants():
-    app_name = "Test App"
-    wait_for_sec = 5
+    app_name = "Shopee Crawler"
+    wait_for_sec = 5 ## Wait after finish per crawl
     use_phantomjs = False
-    use_headless_chrome = False
-    url = 'http://gonderitakip.ptt.gov.tr/'
-    barkod_id = 'barkod'
-    security_id = 'security_code'
-    security_image_path = "//td[@class='dataCell']/table[@class='table80']//img"
-    sorgula_button = "//input[@name='Submit']"
-    captcha_way = "captchas/captcha.png"
-    captcha_path = "captchas"
-    invalid_barkod_path = "//body/div[2]/h3[.='Barkod Numarasinda hata var:']"
-    invalid_captcha_path = "//body/div[2]/h3[contains(text(), 'Güvenlik kodu hatalı girilmiştir. Lütfen tekrar deneyiniz.')]"
-    wait_page_path = "//td[@class='dataCell'][contains(text(), 'Lüfen biraz bekleyip sayfayı tekrar güncelleyin.')]"
+    use_headless_chrome = False ## Recommended
 
-    last_process_comment_xpath = '//*[@id="pathway"]/ul/li/table/tbody/tr[9]/td[1]/div'
-    last_process_date_xpath = '//*[@id="pathway"]/ul/li/table/tbody/tr[9]/td[2]/div'
-    delivery_comment_xpath = '//*[@id="pathway"]/ul/li/table/tbody/tr[1]/td[1]/div[. !=""]'
+    # Url Definitions
+    urlPrefix = 'https://shopee.ph/shop/'
+    allProductsPostfix = '/search'
+    searchPageWithPagingParameter = '/search?page={}&sortBy=pop'
 
-    fee_table_xpath = "//li/table/../../../../h2[text()='ÜCRETLER']/..//table"
-    _fee_table_xpath = "//form[@name='form']/div[3]//div[@id='pathway']//table[@border='0']"
-    total_fee_xpath = "//body[@class='yjsgbody']/form[@name='form']/div[3]//div[@id='pathway']//table/tbody/tr[6]/td"
+    # Selenium Definitions
+    product_per_page = 30
+    start_page = 1
+    searchPageStartWith = 0
+    loader_path = '//div[contains(@class,"stardust-spinner")]'
 
-    # delivery_actions_xpath = "//li/table/../../../../h2[text()='GÖNDERİNİN HAREKETLERİ ']/..//table[@border='1']" # not working on selenium but if u want to check on browser any problem of that xpath
+    # XPath Definitions
 
-    list_of_table_xpath = "//li/table[@border='1']"
+    # Store Page
+    store_name_path = '//div[@role="main"]//h1'
+    store_about_path = '//div[@class="shop-page-shop-description"]/span'
+    store_products_count_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[1]/div[2]/div[2]'
+    store_following_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[2]/div[2]/div[2]'
+    store_chat_performance_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[3]/div[2]/div[2]'
+    store_cancellation_rate_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[4]/div[2]/div[2]'
+    store_followers_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[5]/div[2]/div[2]'
+    store_rating_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[6]/div[2]/div[2]'
+    store_joined_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[7]/div[2]/div[2]'
+
+    # Products Page
+
+    search_items_path = '/html//div[@id="main"]/div//div[@role="main"]//div[@class="row"]/div'
+    search_next_button_path = '//button[@class="shopee-button-outline shopee-mini-page-controller__next-btn"]'
