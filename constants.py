@@ -1,11 +1,13 @@
+import os
+
 
 class Constants():
     app_name = "Shopee Crawler"
-    wait_for_sec = 5 ## Wait after finish per crawl
-    use_phantomjs = False
-    use_headless_chrome = False ## Recommended
+    wait_for_sec = 5 # Wait after finish per crawl
+    use_phantomjs = False # False Default
+    use_headless_chrome = False
     # TODO: Change according to which operating system you are using
-    chrome_driver = 'chromedriver' # For windows change to 'chromedriver.exe'
+    chrome_driver = os.path.join(os.path.dirname(__file__), 'chromedriver') # For windows change to 'chromedriver.exe'
 
     # Url Definitions
     urlPrefix = 'https://shopee.ph/shop/'
