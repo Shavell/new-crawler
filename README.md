@@ -1,4 +1,6 @@
 # GonderiTakibi
+
+**IMPORTANT: Project Is Deprecated!**
 > tracking and logging your shipments for international PTT posts.
 
 ![Screenshot](https://raw.githubusercontent.com/Shavell/repo-assets/master/gonderiTakibi/tracking.gif)
@@ -54,6 +56,7 @@ order by r.last_process_date asc
 
 ## How to use
 
+ - Make sure you are using python 3.6 (conda will help you)
  - Firstly pip install -r requirements.txt
  - Open db/models.py and edit example section for own requirements.
  - Run db/models.py for creation tables to sqlite.db
