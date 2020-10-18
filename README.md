@@ -3,7 +3,7 @@
 ## How to use
 
  - Firstly Make sure you are using python 3.6 (conda will help you)
- - Check chromedriver and chrome version, it's should be same version (if it's not then replace under project folder)
+ - Check chromedriver and chrome version, it's should be same version (if it's not then replace under project folder, check constants.py!)
  - pip install -r requirements.txt
  - Run db/models.py for creation tables to sqlite.db
  - Run main.py as Unittest (like; python -m unittest main.py)
