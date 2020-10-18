@@ -68,5 +68,7 @@ if __name__ == "__main__":
     if StoreId.table_exists() is not True:
         db.create_tables([StoreId, Store, StoreItem])
         generate_migrate()
-    elif len(Store.select()) == 0:
+    elif StoreId.select().count() == 0:
         generate_migrate()
+    else:
+        print('Nothing to do. You can continue to next step.')
