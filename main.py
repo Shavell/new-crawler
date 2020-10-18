@@ -2,14 +2,11 @@ import shutil
 import unittest
 
 from selenium import webdriver
-
 from util import *
 
 logger = logging.getLogger(__name__)
 
-
 class Main(unittest.TestCase):
-
     def setUp(self):
         if shutil.which('phantomjs') is not None and Constants.use_phantomjs:
             self.driver = webdriver.PhantomJS()
@@ -18,7 +15,7 @@ class Main(unittest.TestCase):
             options = webdriver.ChromeOptions()
             if Constants.use_headless_chrome:
                 options.add_argument('headless')
-            self.driver = webdriver.Chrome(executable_path="chromedriver.exe", chrome_options=options)
+            self.driver = webdriver.Chrome(executable_path=Constants.chrome_driver, chrome_options=options)
         models.db.connect()
         self.test_id = fill_start_test_query(start=datetime.now())
 
@@ -26,6 +23,7 @@ class Main(unittest.TestCase):
         self.driver.quit()
         models.db.close()
 
+    # Triggered automatically
     def check_tracking(self, err=False):
         driver = self.driver
         driver.get(Constants.url)

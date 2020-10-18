@@ -4,6 +4,8 @@ class Constants():
     wait_for_sec = 5 ## Wait after finish per crawl
     use_phantomjs = False
     use_headless_chrome = False ## Recommended
+    # TODO: Change according to which operating system you are using
+    chrome_driver = 'chromedriver' # For windows change to 'chromedriver.exe'
 
     # Url Definitions
     urlPrefix = 'https://shopee.ph/shop/'
