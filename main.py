@@ -2,9 +2,12 @@ import shutil
 import unittest
 
 from selenium import webdriver
+
+from db import models
 from util import *
 
 logger = logging.getLogger(__name__)
+
 
 class Main(unittest.TestCase):
     def setUp(self):
@@ -39,7 +42,7 @@ class Main(unittest.TestCase):
                     self.assertFalse(error)
                 except Exception as error:
                     self.assertFalse(error)
-                crawl_store(self)
+                crawl_store(self, store_id)
 
 
 if __name__ == "__main__":
