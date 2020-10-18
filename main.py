@@ -25,21 +25,22 @@ class Main(unittest.TestCase):
     def test_doit(self):
         driver = self.driver
         store_ids = models.StoreId.select().where(models.StoreId.done == False)
-
         for store_id in store_ids:
             with self.subTest(comment=store_id.comment):
                 driver.get(store_id.storeUrl)
                 try:
-                    crawl_store(self)
+                    check_success_response(self)
                 except ScreenWaitException:
                     time.sleep(Constants.wait_for_sec)
                     logger.info("Page is loading! 5 sec. for refresh")
-                    self.driver.refresh()
+                    time.sleep(Constants.wait_for_sec)
                 except InvalidStoreUrlException as error:
                     logger.error("StoreUrl is wrong !")
                     self.assertFalse(error)
                 except Exception as error:
                     self.assertFalse(error)
+                crawl_store(self)
+
 
 if __name__ == "__main__":
     unittest.main()

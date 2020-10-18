@@ -34,6 +34,5 @@ class Constants():
     store_joined_path = '/html//div[@id="main"]/div//div[@role="main"]/div[@class="shop-page__info"]/div/div[2]/div[7]/div[2]/div[2]'
 
     # Products Page
-
     search_items_path = '/html//div[@id="main"]/div//div[@role="main"]//div[@class="row"]/div'
     search_next_button_path = '//button[@class="shopee-button-outline shopee-mini-page-controller__next-btn"]'
