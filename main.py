@@ -18,7 +18,7 @@ class Main(unittest.TestCase):
             options = webdriver.ChromeOptions()
             if Constants.use_headless_chrome:
                 options.add_argument('headless')
-            self.driver = webdriver.Chrome(executable_path=Constants.chrome_driver, chrome_options=options)
+            self.driver = webdriver.Chrome(executable_path=Constants.chrome_driver, options=options)
         models.db.connect()
 
     def tearDown(self):
