@@ -3,7 +3,8 @@ from datetime import datetime
 
 from peewee import *
 
-db = SqliteDatabase(os.path.join(os.path.dirname(__file__), '../sqlite.db'))
+# Set root directory of project
+db = SqliteDatabase(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'sqlite.db'))
 
 
 class StoreId(Model):
@@ -64,8 +65,6 @@ def generate_migrate():
 
 
 if __name__ == "__main__":
-    if db.table_exists(StoreId) is not True:
+    if StoreId.table_exists() is not True:
         db.create_tables([StoreId, Store, StoreItem])
         generate_migrate()
-    else:
-        db.drop_tables([StoreId, Store, StoreItem])
