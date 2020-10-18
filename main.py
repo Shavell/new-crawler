@@ -4,8 +4,8 @@ import unittest
 
 from selenium import webdriver
 
-from db import models
-from util import *
+from libs import models
+from libs.util import *
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class Main(unittest.TestCase):
 
     def test_doit(self):
         driver = self.driver
-        from db.models import StoreId
+        from libs.models import StoreId
         store_ids = StoreId.select().where(models.StoreId.done == False)
         if StoreId.select().where(StoreId.done == False).count() == 0:
             print('There is no one undone test!')

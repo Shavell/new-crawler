@@ -5,14 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from constants import Constants
-from exceptions import *
+from libs.constants import Constants
+from libs.exceptions import *
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 ch = logging.StreamHandler()
-fh = logging.FileHandler('logs.log')
+fh = logging.FileHandler('../logs.log')
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
@@ -36,7 +36,7 @@ def check_success_response(self):
 
 
 def crawl_store(self, store_id):
-    from db.models import Store
+    from libs.models import Store
     Store.create(storeId=store_id,
                  storeName=get_text_from_xpath(self, Constants.store_name_path),
                  products=get_text_from_xpath(self, Constants.store_products_count_path),
@@ -47,5 +47,5 @@ def crawl_store(self, store_id):
                  followers=get_text_from_xpath(self, Constants.store_followers_path),
                  rating=get_text_from_xpath(self, Constants.store_rating_path),
                  about=get_text_from_xpath(self, Constants.store_about_path))
-    from db.models import StoreId
+    from libs.models import StoreId
     StoreId.update(done=1).where(StoreId.id == store_id).execute()
