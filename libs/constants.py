@@ -7,7 +7,7 @@ class Constants():
     use_phantomjs = False # False Default
     use_headless_chrome = False
     # TODO: Change according to which operating system you are using
-    chrome_driver = os.path.join(os.path.dirname(__file__), '../chromedriver') # For windows change to 'chromedriver.exe'
+    chrome_driver = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'linux_chromedriver') # For windows change to 'chromedriver.exe'
 
     # Url Definitions
     urlPrefix = 'https://shopee.ph/shop/'
